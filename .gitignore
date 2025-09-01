@@ -1,0 +1,111 @@
+# Игнорировать системные файлы
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Игнорировать файлы редакторов и IDE
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# JetBrains IDE (WebStorm, PyCharm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Игнорировать логи
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Игнорировать runtime данные
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Игнорировать зависимости
+node_modules/
+jspm_packages/
+
+# Игнорировать папки для вывода сборки
+/dist/
+/build/
+/out/
+/target/
+
+# Игнорировать временные файлы
+*.tmp
+*.temp
+
+# Игнорировать кэш
+.cache/
+.parcel-cache/
+
+# Игнорировать environment variables файлы
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Игнорировать coverage отчеты
+coverage/
+.nyc_output/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
