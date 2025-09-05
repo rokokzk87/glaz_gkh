@@ -7,16 +7,18 @@ import re
 import tempfile
 
 import gradio as gr
+import uuid
 from PIL import Image, ImageDraw
 from langchain_core.exceptions import OutputParserException
 from openai import OpenAI
 
 from prompts import LONG_SYSTEM_PROMPT, output_parser
-from config import VLLM_BASE_URL, VLLM_API_KEY, VLLM_MODEL
+from config import VLLM_BASE_URL, VLLM_API_KEY, VLLM_MODEL, MEDIA_DIR
 
 MAX_SIDE = 1280
 ASSETS_DIR = "assets"
 os.makedirs(ASSETS_DIR, exist_ok=True)
+os.makedirs(MEDIA_DIR, exist_ok=True)
 
 # Конфигурация доступа к vLLM (OpenAI-совместимый сервер)
 client = OpenAI(base_url=VLLM_BASE_URL, api_key=VLLM_API_KEY)
@@ -146,13 +148,12 @@ def analyze_image(img: Image.Image):
         scale = MAX_SIDE / max(w, h)
         img = img.resize((int(w*scale), int(h*scale)), Image.Resampling.LANCZOS)
 
-    # Сохраняем временно
-    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp:
-        img.save(tmp.name)
-        path = tmp.name
+    # Сохраняем в директорию, доступную vLLM
+    filename = f"{uuid.uuid4().hex}.jpg"
+    path = os.path.join(MEDIA_DIR, filename)
+    img.save(path, format="JPEG")
 
     parsed, raw = process_image(path)
-    os.unlink(path)
     if "error" in parsed:
         return None, parsed["error"]
 
