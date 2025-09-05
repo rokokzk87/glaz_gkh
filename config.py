@@ -4,7 +4,7 @@ from typing import Dict
 
 
 DEFAULTS: Dict[str, str] = {
-    "base_url": "http://10.4.143.24/йцут/v1",
+    "base_url": "http://10.4.143.24/qwen/v1",
     "api_key": "api_key_123",
     "model": "qwen2.5-vl",
 }
