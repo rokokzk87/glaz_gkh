@@ -126,11 +126,10 @@ def process_image(image_path: str):
         except OutputParserException:
             try:
                 data = json.loads(norm)
-            except:
+            except Exception:
                 raise
-            if isinstance(data, dict) and "analysis" in data:
-                data.setdefault("result", [])
-                data.setdefault("bounding_boxes", [])
+            # Принять словарь, если есть ключи result/bounding_boxes
+            if isinstance(data, dict) and "result" in data and "bounding_boxes" in data:
                 parsed = data
             else:
                 parsed = output_parser.parse(norm)
